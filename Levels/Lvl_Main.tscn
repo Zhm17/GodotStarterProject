@@ -1225,11 +1225,11 @@ environment = SubResource("Environment_18tut")
 
 [node name="----------LEVEL-----------------" type="Node" parent="."]
 
-[node name="Area3D" type="Area3D" parent="----------LEVEL-----------------"]
+[node name="AreaTrigger" type="Area3D" parent="----------LEVEL-----------------"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9528084, 0.5909399, 0)
 script = ExtResource("1_18tut")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="----------LEVEL-----------------/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="----------LEVEL-----------------/AreaTrigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05834961, 0)
 shape = SubResource("CylinderShape3D_rm702")
 
@@ -2646,3 +2646,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[connection signal="area_triggered" from="----------LEVEL-----------------/AreaTrigger" to="LowPolyDungeon/Door_Iron_Right" method="_open"]
