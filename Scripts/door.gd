@@ -18,7 +18,7 @@ func _ready() -> void:
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta: float) :
 	pass
 
 func _open(signal_color : int):
@@ -35,9 +35,3 @@ func _open(signal_color : int):
 		# Clean after play
 		await audio_player.finished
 		audio_player.queue_free()
-		
-		visible = not visible
-
-
-func _on_area_trigger_area_triggered(signal_color: int) -> void:
-	pass # Replace with function body.
