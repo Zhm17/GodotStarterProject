@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=4 uid="uid://bo0tid5tbvcia"]
+[gd_scene load_steps=92 format=4 uid="uid://bo0tid5tbvcia"]
 
 [ext_resource type="PackedScene" uid="uid://yy6mivwumwpx" path="res://Levels/Player.tscn" id="1_0n4d8"]
 [ext_resource type="Script" uid="uid://dvq56q25043dh" path="res://Scripts/area3d.gd" id="1_18tut"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://uadm1q8cstej" path="res://Scripts/crown.gd" id="7_8al36"]
 [ext_resource type="Script" uid="uid://ck8s5jqfl4cb" path="res://Scripts/canvas_layer.gd" id="8_8al36"]
 [ext_resource type="Texture2D" uid="uid://cxp3iub6bc15j" path="res://Assets/UI/Img_Clock.png" id="9_vslta"]
+[ext_resource type="Texture2D" uid="uid://c0abuvsnxrhyu" path="res://Assets/UI/Img_Defeat.png" id="10_3a5as"]
+[ext_resource type="Texture2D" uid="uid://cff6fsd55h3hu" path="res://Assets/UI/Img_Victory.png" id="11_n2enh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0n4d8"]
 sky_top_color = Color(0.119, 0.14025001, 0.17, 1)
@@ -1411,13 +1413,17 @@ script = ExtResource("4_rm702")
 transform = Transform3D(0.99998856, 0, -3.0695446e-12, 0, 1, 0, 3.0695446e-12, 0, 0.99998856, -0.7416338, 0.9951477, 0)
 shape = SubResource("BoxShape3D_q6cbj")
 
-[node name="Msh_Crown" parent="." instance=ExtResource("4_q6cbj")]
-physics_interpolation_mode = 1
+[node name="CrownArea3D" type="Area3D" parent="."]
 transform = Transform3D(3.4936905, 0, 0, 0, 3.4936905, 0, 0, 0, 3.4936905, 31.886503, 6.1980424, -0.05186999)
 script = ExtResource("7_8al36")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Msh_Crown"]
-transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 0.13175988, 0)
+[node name="Msh_Crown" parent="CrownArea3D" instance=ExtResource("4_q6cbj")]
+physics_interpolation_mode = 1
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
+rotation_edit_mode = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrownArea3D"]
+transform = Transform3D(1.0000004, 0, 0, 0, 1.0000004, 0, 0, 0, 1.0000004, 0, 0.13175988, 0)
 shape = SubResource("CylinderShape3D_q6cbj")
 
 [node name="LowPolyDungeon" type="Node3D" parent="."]
@@ -2745,14 +2751,25 @@ mouse_filter = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="UI"]
 script = ExtResource("8_8al36")
+time = 59.0
 
-[node name="TimerSprite2D" type="Sprite2D" parent="UI/CanvasLayer"]
-position = Vector2(88.00001, 104.99999)
+[node name="HUDPanel" type="Panel" parent="UI/CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimerSprite2D" type="Sprite2D" parent="UI/CanvasLayer/HUDPanel"]
+position = Vector2(77, 99)
 rotation = -0.15533431
-scale = Vector2(0.20899773, 0.22080292)
+scale = Vector2(0.15756233, 0.17035884)
 texture = ExtResource("9_vslta")
 
-[node name="Sec_Label" type="Label" parent="UI/CanvasLayer"]
+[node name="Sec_Label" type="Label" parent="UI/CanvasLayer/HUDPanel"]
+layout_mode = 0
 offset_left = 129.0
 offset_top = 65.0
 offset_right = 186.0
@@ -2761,7 +2778,8 @@ text = "00"
 label_settings = SubResource("LabelSettings_iko7n")
 horizontal_alignment = 1
 
-[node name="_Label2" type="Label" parent="UI/CanvasLayer"]
+[node name="_Label2" type="Label" parent="UI/CanvasLayer/HUDPanel"]
+layout_mode = 0
 offset_left = 170.0
 offset_top = 61.0
 offset_right = 236.0
@@ -2770,7 +2788,8 @@ text = ":"
 label_settings = SubResource("LabelSettings_iko7n")
 horizontal_alignment = 1
 
-[node name="MSec_Label3" type="Label" parent="UI/CanvasLayer"]
+[node name="MSec_Label3" type="Label" parent="UI/CanvasLayer/HUDPanel"]
+layout_mode = 0
 offset_left = 217.0
 offset_top = 66.0
 offset_right = 274.0
@@ -2779,7 +2798,40 @@ text = "00"
 label_settings = SubResource("LabelSettings_iko7n")
 horizontal_alignment = 1
 
+[node name="DefeatPanel" type="Panel" parent="UI/CanvasLayer"]
+visible = false
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/CanvasLayer/DefeatPanel"]
+position = Vector2(576, 328.5)
+scale = Vector2(1.0703704, 1.0615883)
+texture = ExtResource("10_3a5as")
+
+[node name="VictoryPanel" type="Panel" parent="UI/CanvasLayer"]
+visible = false
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/CanvasLayer/VictoryPanel"]
+position = Vector2(574, 324.49997)
+scale = Vector2(1.0796297, 1.0648297)
+texture = ExtResource("11_n2enh")
+
 [connection signal="area_triggered" from="----------LEVEL-----------------/GreenAreaTrigger" to="Green_Door_Iron_Right" method="_open"]
 [connection signal="area_triggered" from="----------LEVEL-----------------/YellowAreaTrigger2" to="Y_Door_Iron_Right3" method="_open"]
 [connection signal="area_triggered" from="----------LEVEL-----------------/MagentaAreaTrigger3" to="Mag_Door_Iron_Right2" method="_open"]
 [connection signal="area_triggered" from="----------LEVEL-----------------/CyanAreaTrigger4" to="C_Door_Iron_Right4" method="_open"]
+[connection signal="crown_triggered" from="CrownArea3D" to="UI/CanvasLayer" method="stop"]
