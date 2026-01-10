@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://yy6mivwumwpx"]
+
+[ext_resource type="Script" uid="uid://bnib1um4yt82u" path="res://Scripts/player.gd" id="1_bw61f"]
+[ext_resource type="PackedScene" uid="uid://d0n0gjec8dode" path="res://Assets/Character/Cha_Anims.fbx" id="1_un2fj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bw61f"]
+height = 1.3496094
+radius = 0.35595703
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_bw61f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70674884, 0)
+shape = SubResource("CylinderShape3D_bw61f")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="Cha_Anims" parent="Visuals" instance=ExtResource("1_un2fj")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="CameraMount" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7073119, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraMount"]
+transform = Transform3D(1, 0, 0, 0, 0.97507584, 0.22187187, 0, -0.22187187, 0.97507584, 0, 1.0801177, 2.1285279)
