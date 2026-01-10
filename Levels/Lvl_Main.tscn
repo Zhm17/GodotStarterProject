@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo0tid5tbvcia"]
+
+[ext_resource type="PackedScene" uid="uid://vpj6pqgjarbo" path="res://Assets/Level/Msh_LowPolyDungeon.gltf" id="2_0n4d8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0n4d8"]
+sky_top_color = Color(0.119, 0.14025001, 0.17, 1)
+sky_horizon_color = Color(0.016800001, 0.06402665, 0.14, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_wg6ce"]
+sky_material = SubResource("ProceduralSkyMaterial_0n4d8")
+
+[sub_resource type="Environment" id="Environment_18tut"]
+background_mode = 2
+sky = SubResource("Sky_wg6ce")
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+glow_intensity = 1.4
+glow_strength = 1.05
+glow_bloom = 0.25
+
+[node name="Node3D" type="Node3D"]
+
+[node name="----------ENV-----------------" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_18tut")
+
+[node name="----------LEVEL-----------------" type="Node" parent="."]
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9803987, 8.149571, -5.978823)
+light_color = Color(1, 0.85352826, 0.65664685, 1)
+light_energy = 3.0
+omni_range = 12.943
+omni_attenuation = 1.58
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.014709, 8.149571, -5.978823)
+light_color = Color(1, 0.85352826, 0.65664685, 1)
+light_energy = 3.0
+omni_range = 12.943
+omni_attenuation = 1.58
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.014709, 8.149571, 6.021172)
+light_color = Color(1, 0.85352826, 0.65664685, 1)
+light_energy = 3.0
+omni_range = 12.943
+omni_attenuation = 1.58
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0353627, 8.149571, 6.021172)
+light_color = Color(1, 0.85352826, 0.65664685, 1)
+light_energy = 3.0
+omni_range = 12.943
+omni_attenuation = 1.58
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.017454, 2.8723495, 0.035598874)
+light_color = Color(1, 0.85352826, 0.65664685, 1)
+omni_range = 4.641
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.9999909, 0.0042760437, 0, -0.0042760437, 0.9999909, 22.005398, 6.0353646, 20.064049)
+light_color = Color(1, 0.85352826, 0.65664685, 1)
+omni_range = 4.641
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.9999909, 0.0042760437, 0, -0.0042760437, 0.9999909, 22.005398, 6.0353646, -20.074894)
+light_color = Color(1, 0.85352826, 0.65664685, 1)
+omni_range = 4.641
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.9999909, 0.0042760437, 0, -0.0042760437, 0.9999909, 30.038164, 8.447867, 0.103520155)
+light_color = Color(1, 0.85352826, 0.65664685, 1)
+omni_range = 4.641
+
+[node name="Green" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.9999909, 0.0042760437, 0, -0.0042760437, 0.9999909, 7.9811172, 0.11976254, -0.045717537)
+light_color = Color(0.2511981, 1, 0.22476995, 1)
+light_energy = 2.0
+omni_range = 1.123
+
+[node name="Orange" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.9999909, 0.0042760437, 0, -0.0042760437, 0.9999909, 21.963774, 0.11976254, -0.045717537)
+light_color = Color(1, 0.59260714, 0.2235294, 1)
+light_energy = 2.0
+omni_range = 1.123
+
+[node name="Blue" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.9999909, 0.0042760437, 0, -0.0042760437, 0.9999909, 21.963774, 2.6066859, -20.01028)
+light_color = Color(0.2235294, 0.9087682, 1, 1)
+light_energy = 2.0
+omni_range = 1.123
+
+[node name="Purple" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.9999909, 0.0042760437, 0, -0.0042760437, 0.9999909, 22.02812, 2.6748598, 21.17781)
+light_color = Color(0.9295011, 0.49560803, 1, 1)
+light_energy = 2.0
+omni_range = 1.123
+
+[node name="LowPolyDungeon" parent="." instance=ExtResource("2_0n4d8")]
+
+[node name="----------SYSTEMS-----------------" type="Node" parent="."]
+
+[node name="----------UI-----------------" type="Node" parent="."]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
