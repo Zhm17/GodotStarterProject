@@ -32,6 +32,8 @@ environment = SubResource("Environment_18tut")
 
 [node name="Player" parent="." instance=ExtResource("1_0n4d8")]
 transform = Transform3D(-0.0075746486, 0, -0.99997133, 0, 1, 0, 0.99997133, 0, -0.0075746486, 1.0139194, 0, 0)
+sens_horizontal = 0.2
+vertical_rotation_max = 25.0
 
 [node name="Lights" type="Node3D" parent="."]
 

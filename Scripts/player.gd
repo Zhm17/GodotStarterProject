@@ -1,9 +1,29 @@
 extends CharacterBody3D
 
+@onready var camera_mount = $camera_mount
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@export var sens_horizontal = 0.5
+@export var sens_vertical = 0.5
+
+@export var vertical_rotation_min = -80.0 
+@export var vertical_rotation_max = 80.0
+
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+func _input(event):
+	if event is InputEventMouseMotion:
+		rotate_y(deg_to_rad(-event.relative.x * sens_horizontal))
+		camera_mount.rotate_x(deg_to_rad(-event.relative.y * sens_vertical))
+		
+		camera_mount.rotation.x = clamp(
+			camera_mount.rotation.x,
+			deg_to_rad(vertical_rotation_min),  
+			deg_to_rad(vertical_rotation_max)   
+		)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

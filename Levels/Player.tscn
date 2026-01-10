@@ -19,8 +19,8 @@ shape = SubResource("CylinderShape3D_bw61f")
 [node name="Cha_Anims" parent="Visuals" instance=ExtResource("1_un2fj")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="CameraMount" type="Node3D" parent="."]
+[node name="camera_mount" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7073119, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraMount"]
+[node name="Camera3D" type="Camera3D" parent="camera_mount"]
 transform = Transform3D(1, 0, 0, 0, 0.97507584, 0.22187187, 0, -0.22187187, 0.97507584, 0, 1.0801177, 2.1285279)
