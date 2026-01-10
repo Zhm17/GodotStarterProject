@@ -1,9 +1,10 @@
-[gd_scene load_steps=82 format=4 uid="uid://bo0tid5tbvcia"]
+[gd_scene load_steps=83 format=4 uid="uid://bo0tid5tbvcia"]
 
 [ext_resource type="PackedScene" uid="uid://yy6mivwumwpx" path="res://Levels/Player.tscn" id="1_0n4d8"]
 [ext_resource type="Script" uid="uid://dvq56q25043dh" path="res://Scripts/area3d.gd" id="1_18tut"]
 [ext_resource type="Texture2D" uid="uid://m6sm07j78w0l" path="res://Assets/Character/Map_Cha.png" id="2_0n4d8"]
 [ext_resource type="PackedScene" uid="uid://b8bq5foukdx82" path="res://Assets/Level/Msh_Crown.gltf" id="4_q6cbj"]
+[ext_resource type="Script" uid="uid://c1duove5ce8ir" path="res://Scripts/door.gd" id="4_rm702"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0n4d8"]
 sky_top_color = Color(0.119, 0.14025001, 0.17, 1)
@@ -1321,6 +1322,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01675415, 4.7683716e-07, -
 transform = Transform3D(1.7881393e-07, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 1.7881393e-07, 18.221113, 0, 0.7267139)
 mesh = SubResource("ArrayMesh_3eana")
 skeleton = NodePath("")
+script = ExtResource("4_rm702")
 
 [node name="FloorPlate" type="MeshInstance3D" parent="LowPolyDungeon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9726486, -0.003008971, 0)
@@ -2644,6 +2646,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[connection signal="area_entered" from="----------LEVEL-----------------/Area3D" to="----------LEVEL-----------------/Area3D" method="_on_area_entered"]
-[connection signal="body_entered" from="----------LEVEL-----------------/Area3D" to="----------LEVEL-----------------/Area3D" method="_on_body_entered"]
