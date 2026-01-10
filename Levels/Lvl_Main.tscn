@@ -1,8 +1,7 @@
-[gd_scene load_steps=92 format=4 uid="uid://bo0tid5tbvcia"]
+[gd_scene load_steps=91 format=4 uid="uid://bo0tid5tbvcia"]
 
 [ext_resource type="PackedScene" uid="uid://yy6mivwumwpx" path="res://Levels/Player.tscn" id="1_0n4d8"]
 [ext_resource type="Script" uid="uid://dvq56q25043dh" path="res://Scripts/area3d.gd" id="1_18tut"]
-[ext_resource type="Script" uid="uid://d03w5ax81gsv8" path="res://Levels/lvl_main.gd" id="1_rm702"]
 [ext_resource type="Texture2D" uid="uid://m6sm07j78w0l" path="res://Assets/Character/Map_Cha.png" id="2_0n4d8"]
 [ext_resource type="PackedScene" uid="uid://b8bq5foukdx82" path="res://Assets/Level/Msh_Crown.gltf" id="4_q6cbj"]
 [ext_resource type="Script" uid="uid://c1duove5ce8ir" path="res://Scripts/door.gd" id="4_rm702"]
@@ -1234,7 +1233,6 @@ font_size = 50
 outline_size = 1
 
 [node name="lvl_Main" type="Node3D"]
-script = ExtResource("1_rm702")
 
 [node name="----------ENV-----------------" type="Node" parent="."]
 
