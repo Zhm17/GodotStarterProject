@@ -5,22 +5,6 @@ var audio_player
 
 @export var door_color : int
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	#var area = get_node("AreaTrigger")
-	#if  area:
-		#area.area_triggered.connect(_open)
-		#print("Area and door connected ! ")
-	#else : 
-		#print("Area not found ! ")
-		pass
-	
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) :
-	pass
-
 func _open(signal_color : int):
 	if signal_color == door_color : 
 	
