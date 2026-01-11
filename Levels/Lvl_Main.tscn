@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=4 uid="uid://bo0tid5tbvcia"]
+[gd_scene load_steps=92 format=4 uid="uid://bo0tid5tbvcia"]
 
 [ext_resource type="PackedScene" uid="uid://yy6mivwumwpx" path="res://Levels/Player.tscn" id="1_0n4d8"]
 [ext_resource type="Script" uid="uid://dvq56q25043dh" path="res://Scripts/area3d.gd" id="1_18tut"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ck8s5jqfl4cb" path="res://Scripts/canvas_layer.gd" id="8_8al36"]
 [ext_resource type="Texture2D" uid="uid://cxp3iub6bc15j" path="res://Assets/UI/Img_Clock.png" id="9_vslta"]
 [ext_resource type="Texture2D" uid="uid://c0abuvsnxrhyu" path="res://Assets/UI/Img_Defeat.png" id="10_3a5as"]
+[ext_resource type="Script" uid="uid://bnpkugt7a2cu5" path="res://Scripts/restart_level.gd" id="10_n2enh"]
 [ext_resource type="Texture2D" uid="uid://cff6fsd55h3hu" path="res://Assets/UI/Img_Victory.png" id="11_n2enh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0n4d8"]
@@ -1278,7 +1279,9 @@ shape = SubResource("CylinderShape3D_rm702")
 
 [node name="Player" parent="." instance=ExtResource("1_0n4d8")]
 transform = Transform3D(-0.0075746486, 0, -0.99997133, 0, 1, 0, 0.99997133, 0, -0.0075746486, 1.0139194, 0, 0)
-collision_mask = 5
+wall_min_slide_angle = 0.1850049
+floor_max_angle = 0.90582585
+floor_snap_length = 0.01
 platform_wall_layers = 1
 sens_horizontal = 0.2
 sens_vertical = 0.35
@@ -1472,7 +1475,6 @@ mesh = SubResource("ArrayMesh_0to0w")
 skeleton = NodePath("")
 
 [node name="Stairs_Low_001" type="MeshInstance3D" parent="LowPolyDungeon"]
-physics_interpolation_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 10)
 mesh = SubResource("ArrayMesh_34llu")
 skeleton = NodePath("")
@@ -2671,24 +2673,28 @@ shape = SubResource("ConcavePolygonShape3D_cnupt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.999998, 2.5264792, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LowPolyDungeon/Cube_001"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09813452, 0)
 shape = SubResource("ConcavePolygonShape3D_42oho")
 
 [node name="Cube_002" type="StaticBody3D" parent="LowPolyDungeon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.999998, 5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LowPolyDungeon/Cube_002"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0011701584, 0)
 shape = SubResource("ConcavePolygonShape3D_qyxfy")
 
 [node name="Cube_003" type="StaticBody3D" parent="LowPolyDungeon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.999998, 2.5264792, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LowPolyDungeon/Cube_003"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.020087242, 0)
 shape = SubResource("ConcavePolygonShape3D_bf11p")
 
 [node name="Cube_004" type="StaticBody3D" parent="LowPolyDungeon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.002508, 4.000231, 0.050662994)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LowPolyDungeon/Cube_004"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8483534, 0)
 shape = SubResource("ConcavePolygonShape3D_p75tv")
 
 [node name="Cube_005" type="StaticBody3D" parent="LowPolyDungeon"]
@@ -2818,8 +2824,25 @@ position = Vector2(576, 328.5)
 scale = Vector2(1.0703704, 1.0615883)
 texture = ExtResource("10_3a5as")
 
+[node name="Button" type="Button" parent="UI/CanvasLayer/DefeatPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -143.5
+offset_top = -173.0
+offset_right = 142.5
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 36
+action_mode = 0
+text = "TRY AGAIN"
+script = ExtResource("10_n2enh")
+
 [node name="VictoryPanel" type="Panel" parent="UI/CanvasLayer"]
-visible = false
 top_level = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -2835,8 +2858,28 @@ position = Vector2(574, 324.49997)
 scale = Vector2(1.0796297, 1.0648297)
 texture = ExtResource("11_n2enh")
 
+[node name="Button" type="Button" parent="UI/CanvasLayer/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_top = -134.0
+offset_right = 144.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 36
+action_mode = 0
+text = "RESTART"
+script = ExtResource("10_n2enh")
+
 [connection signal="area_triggered" from="----------LEVEL-----------------/GreenAreaTrigger" to="Green_Door_Iron_Right" method="_open"]
 [connection signal="area_triggered" from="----------LEVEL-----------------/YellowAreaTrigger2" to="Y_Door_Iron_Right3" method="_open"]
 [connection signal="area_triggered" from="----------LEVEL-----------------/MagentaAreaTrigger3" to="Mag_Door_Iron_Right2" method="_open"]
 [connection signal="area_triggered" from="----------LEVEL-----------------/CyanAreaTrigger4" to="C_Door_Iron_Right4" method="_open"]
 [connection signal="crown_triggered" from="CrownArea3D" to="UI/CanvasLayer" method="stop"]
+[connection signal="pressed" from="UI/CanvasLayer/DefeatPanel/Button" to="UI/CanvasLayer/DefeatPanel/Button" method="_on_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/VictoryPanel/Button" to="UI/CanvasLayer/VictoryPanel/Button" method="_on_pressed"]

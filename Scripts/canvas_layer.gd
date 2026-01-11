@@ -32,6 +32,8 @@ func stop(win : bool) -> void:
 	$HUDPanel/Sec_Label.text = "%02d" % seconds
 	$HUDPanel/MSec_Label3.text = "%02d" % msec
 	
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 	if win :
 		$VictoryPanel.visible = true;
 		audio_player = AudioStreamPlayer.new()
